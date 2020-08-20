@@ -1,35 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FormContainer = styled.div`
-  width: 20%;
-  background-color: #B0C4DE;
-  margin: 0 auto;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
- `
- const Input = styled.input`
-  margin-right: 10px;
-  height: 20px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 0px 0px 4px #57534a;
-`
-const Button = styled.button`
-  height: 30px;
-  border: 1px solid gray;
-  outline: none;
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 0px 0px 4px gray;
-`
 
 export class Filtros extends React.Component {
     state = {
+      listaDeProdutos: this.props.listadeProdutos,
       valores:[],
       valorInputMinimo: '',
       valorInputMaximo: '',
@@ -48,19 +23,39 @@ export class Filtros extends React.Component {
         this.setState({valores: valorVerificado});
       };
     };
+
+
+//==========Filtra a lista de produtos ==================
+    componentDidUpdate() {
+      const listaFiltrada = this.state.listaDeProdutos.filter((item)=>{
+        return (item.price<=this.state.valorInputMaximo && item.price>=this.state.valorInputMinimo) ||
+                (item.planetName.toLowerCase() === this.state.valorInputBuscar)
+      })
+      console.table(listaFiltrada)
+      return listaFiltrada
+    }
+    
+//========= Monitorando campos====================
     onChangeMinimo = (event) => {
       this.setState({
-        valorInputMinimo: event.target.value
+        valorInputMinimo: event.target.value.toLowerCase()
       })
     }
+
     onChangeMaximo = (event) => {
       this.setState({
-        valorInputMaximo: event.target.value
+        valorInputMaximo: event.target.value.toLowerCase()
+      })
+    };
+
+    onChangeNomeProduto = (event) => {
+      this.setState({
+        valorInputBuscar: event.target.value.toLowerCase()
       })
     };
 
     render() {
-      const valorFianl = this.state.valores.map((vlr) => {
+      const valorFinal = this.state.valores.map((vlr) => {
         return (
           <Filtros
             minimo={vlr.minimo}
@@ -68,6 +63,8 @@ export class Filtros extends React.Component {
           />
         );
       });  
+
+
         return (
         <FormContainer>
           <h2>Filtros:</h2>
@@ -76,7 +73,6 @@ export class Filtros extends React.Component {
               value={this.state.minimo}
               onChange={this.onChangeMinimo}
               placeholder={'Valor minimo'}
-              tamanho={'90px'}
               type='number'
             />
             <h3> Valor máximo:</h3>
@@ -84,19 +80,44 @@ export class Filtros extends React.Component {
               value={this.state.maximo}
               onChange={this.onChangeMaximo}
               placeholder={'Maximo'}
-              tamanho={'90px'}
               type='number'
             />
             <h3> Buscar Produto:</h3>
             <Input
               value={this.state.buscar}
-              placeholder={'Maximo'}
-              tamanho={'90px'}
-              
+              onChange={this.onChangeNomeProduto}
+              placeholder={'Digite o nome do produto'}
             />
-            <Button >Buscar</Button>
           </FormContainer>)
     }
 
   }
+  const FormContainer = styled.div`
+  width: 25vw;
+  background-color: gray ;
+  margin:;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+ `
+ const Input = styled.input`
+  margin-right: 2px;
+  height: 20px;
+  width: 80%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 0px 4px #57534a;
+`
+const Button = styled.button`
+  height: 30px;
+  width: 80%;
+  border: 1px solid gray;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 0px 4px gray;
+`
   export default Filtros;   
