@@ -1,9 +1,12 @@
-import React from 'react';
+
+import React from "react"
+// import tripCard from "./accets/components/tripCard.jsx";
 
 import BlackHole from "./accets/images/blackhole.jpg"
 import Caprica from "./accets/images/caprica.jpg"
 import Darillium from "./accets/images/darillium.jpg"
 import Gallifrey from "./accets/images/gallifrey.jpg"
+
 import Krypton from "./accets/images/krypton.jpg"
 import Pandora from "./accets/images/pandora.jpg"
 import Tanaris from "./accets/images/tanaris.png"
@@ -12,7 +15,6 @@ import Mars from "./accets/images/mars.jpg"
 import TripCard from "./accets/Components/TripCard/TripCard"
 import {Carrinho, ItemCarrinho} from './accets/Components/Carrinho/Carrinho'
 import './App.css';
-
 
 const trip = [
   {
@@ -131,6 +133,7 @@ const trip = [
 
 //configurei as props do componente TripCard
 const tripGrid = trip.map((item) => {
+
   return (
     <TripCard
     planetImage={item.planetImage}
@@ -246,6 +249,7 @@ render(){
   )
 
 }
+
 }
 
 export default App;
