@@ -16,8 +16,8 @@ import Filtros from "./accets/components/Filtros"
 // import './App.css';
 
 
-import TripCard from "./accets/Components/TripCard/TripCard"
-import {Carrinho, ItemCarrinho} from './accets/Components/Carrinho/Carrinho'
+import TripCard from "./accets/components/TripCard"
+import {Carrinho, ItemCarrinho} from './accets/components/Carrinho'
 import './App.css';
 
 
