@@ -7,7 +7,9 @@ const PlanetCard = styled.span`
     background-color: lightsteelblue;
     color: darkslateblue;
 `
-const PlanetImage = styled.image`
+
+// mome da tag tava styled.image
+const PlanetImage = styled.img`
     max-width: 150px;
     margin: 0 auto;
 `
@@ -22,14 +24,14 @@ const AddButton = styled.button`
 `
 
 export default function TripCard(props) {
-    const {trip, addToCart} = props;
+    //const {trip, addToCart} = props;
     return (
         <PlanetCard>
-            <PlanetImage src= {trip.planetImage} alt="Visite nosso planeta" />
-                <p>{trip.planetName}</p>
-                <p>{trip.package}</p>
-                <p>§$ {trip.price}</p>
-                <AddButton onClick={addToCart}>Adicionar ao foguete</AddButton>
+            <PlanetImage src={props.planetImage} alt="Visite nosso planeta" />
+                <p>{props.planetName}</p>
+                <p>{props.package}</p>
+                <p>§$ {props.price}</p>
+                <AddButton onClick={props.addToCart}>Adicionar ao foguete</AddButton>
         </PlanetCard>
     )
 }

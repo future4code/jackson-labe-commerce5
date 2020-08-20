@@ -1,16 +1,18 @@
-import React from 'react';
-import tripCard from "./accets/components/tripCard.jsx";
-import BlackHole from "./accets/images/blackhole.jpg";
-import Caprica from "./accets/images/caprica.jpg";
-import Darillium from "./accets/images/darillium.jpg";
-import Gallifrey from "./accets/images/gallifrey.jpg";
-import Krypton from "./accets/images/krypton.jpg";
-import Pandora from "./accets/images/pandora.jpg";
-import Tanaris from "./accets/images/tanaris.png";
-import Mars from "./accets/images/mars.jpg";
+import React from "react"
+// import tripCard from "./accets/components/tripCard.jsx";
+import BlackHole from "./accets/images/blackhole.jpg"
+import Caprica from "./accets/images/caprica.jpg"
+import Darillium from "./accets/images/darillium.jpg"
+import Gallifrey from "./accets/images/gallifrey.jpg"
+import {Krypton} from "./accets/images/krypton.jpg"
+import Pandora from "./accets/images/pandora.jpg"
+import Tanaris from "./accets/images/tanaris.png"
+import Mars from "./accets/images/mars.jpg"
+import TripCard from "./accets/components/tripCard.jsx"
 // import './App.css';
 
-const trip = [{
+const trip = [
+  {
     id: 1,
     planetImage: {BlackHole}, 
     planetName: "Buraco Negro",
@@ -123,8 +125,18 @@ const trip = [{
     price: 125,
   }
 ]
-const tripGrid = trip.map(() => {
-  return ({ tripCard });
+
+//configurei as props do componente TripCard
+const tripGrid = trip.map((item) => {
+  return (
+    <TripCard
+    planetImage={item.planetImage}
+    planetName={item.planetName}
+    package={item.package}
+    price={item.price}
+    //addToCart={/*função add ao carrinho*/}
+    />
+  );
 })
 class App extends React.Component {
   state = {
