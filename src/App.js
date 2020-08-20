@@ -9,6 +9,7 @@ import Pandora from "./accets/images/pandora.jpg"
 import Tanaris from "./accets/images/tanaris.png"
 import Mars from "./accets/images/mars.jpg"
 import TripCard from "./accets/components/tripCard.jsx"
+import Filtros from "./accets/components/Filtros"
 // import './App.css';
 
 const trip = [
@@ -148,7 +149,9 @@ class App extends React.Component {
   }
   render(){
     return(
+      
       <div>
+        <Filtros/>
         {tripGrid}
       </div>
     )
