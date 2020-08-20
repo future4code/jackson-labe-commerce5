@@ -18,127 +18,73 @@ import Filtros from "./accets/components/Filtros"
 
 import TripCard from "./accets/components/TripCard"
 import {Carrinho, ItemCarrinho} from './accets/components/Carrinho'
+import styled from 'styled-components';
 import './App.css';
 
-
+//Lista de produtos do site
 const trip = [
   {
     id: 1,
-    planetImage: {BlackHole}, 
+    planetImage: BlackHole, 
     planetName: "Buraco Negro",
     package: "3 dias estelares",
     price: 1000,
   },
   {
     id: 2,
-    planetImage: {BlackHole}, 
-    planetName: "Buraco Negro",
-    package: "5 dias estelares",
-    price: 1400,
-  },
-  {
-    id: 3,
-    planetImage:{Caprica},
+    planetImage:Caprica,
     planetName: "Caprica",
     package: "3 dias estelares",
     price: 400,
   },
   {
-    id: 4,
-    planetImage:{Caprica},
-    planetName: "Caprica",
-    package: "5 dias estelares",
-    price: 550,
-  },
-  {
-    id: 5,
-    planetImage:{Darillium},
+    id: 3,
+    planetImage:Darillium,
     planetName: "Darillium",
     package: "3 dias estelares",
     price: 750,
   },
   {
-    id: 6,
-    planetImage:{Darillium},
-    planetName: "Darillium",
-    package: "5 dias estelares",
-    price: 900,
-  },
-  {
-    id: 7,
-    planetImage:{Gallifrey},
+    id: 4,
+    planetImage:Gallifrey,
     planetName: "Gallifrey",
     package: "3 dias estelares",
     price: 1200,
   },
   {
-    id: 8,
-    planetImage:{Gallifrey},
-    planetName: "Gallifrey",
-    package: "5 dias estelares",
-    price: 1900,
-  },
-  {
-    id: 9,
-    planetImage:{Krypton},
+    id: 5,
+    planetImage:Krypton,
     planetName: "Krypton",
     package: "3 dias estelares",
     price: 600,
   },
   {
-    id: 10,
-    planetImage:{Krypton},
-    planetName: "Krypton",
-    package: "5 dias estelares",
-    price: 850,
-  },
-  {
-    id: 11,
-    planetImage:{Pandora},
+    id: 6,
+    planetImage:Pandora,
     planetName: "Pandora",
     package: "3 dias estelares",
     price: 1100,
   },
   {
-    id: 12,
-    planetImage:{Pandora},
-    planetName: "Pandora",
-    package: "5 dias estelares",
-    price: 1600,
-  },
-  {
-    id: 13,
-    planetImage:{Tanaris},
+    id: 7,
+    planetImage:Tanaris,
     planetName: "Tanaris",
     package: "3 dias estelares",
     price: 500,
   },
   {
-    id: 14,
-    planetImage:{Tanaris},
-    planetName: "Tanaris",
-    package: "5 dias estelares",
-    price: 700,
-  },
-  {
-    id: 15,
-    planetImage:{Mars},
+    id: 8,
+    planetImage:Mars,
     planetName: "Marte",
     package: "3 dias estelares",
     price: 100,
-  },
-  {
-    id: 16,
-    planetImage:{Mars},
-    planetName: "Marte",
-    package: "5 dias estelares",
-    price: 125,
   }
 ]
 
-//configurei as props do componente TripCard
-const tripGrid = trip.map((item) => {
 
+
+//Array de produtos em JSX
+const tripGrid = trip.map((item) => {
   return (
     <TripCard
     planetImage={item.planetImage}
@@ -150,8 +96,9 @@ const tripGrid = trip.map((item) => {
   );
 })
 
-class App extends React.Component {
 
+
+class App extends React.Component {
 
   //Aqui sera armazenado a lista de produtos
   //selecionados na pagina de produtos
@@ -176,7 +123,8 @@ class App extends React.Component {
         preco:100
       }
     ],
-    valorTotal: ''
+    valorTotal: '',
+    apertouCarrinho: true
   }
 
 
@@ -228,11 +176,17 @@ componentDidMount(){
 }
 
 
+abriCarrinho = () => {
+  this.setState({
+    apertouCarrinho: !this.state.apertouCarrinho
+  })
+}
+
 
 
 
 render(){
-
+  
   //criando uma lista com todos os objetos da lista de Items do state
   const itemsCarrinho = this.state.listaDeItems.map((item)=>{
         return (
@@ -246,18 +200,55 @@ render(){
       })
 
 
-
   return (
-    <div className="App">
-      {tripGrid}
-      {/* imprime o componente Carrinho com a lista de items criada no render */}
-      <Carrinho valorTotal={this.state.valorTotal} item={itemsCarrinho}/>
-       <Filtros/>
-    </div>
+    <ContentApp>
+
+
+      <Filtros
+         listadeProdutos={trip}
+      />
+      <Produtos>
+         {tripGrid }
+      </Produtos>
+      <ContainerCarrinho>
+        <Carrinho valorTotal={this.state.valorTotal} item={itemsCarrinho}/>
+      </ContainerCarrinho>
+      
+
+      <Botao onClick={this.abriCarrinho} tipoDisplay={"v"}>Carrinho</Botao>
+    </ContentApp>
   )
 
 }
 
 }
 
+const ContentApp = styled.div`
+  width: 100vw;
+  background-color: #B0C4DE;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  `
+const Botao = styled.button`
+  position: absolute; 
+  `
+const ContainerCarrinho = styled.div`
+  display: ${(props) =>{
+    if(props.tipoDisplay === "v"){
+      return "block"
+    } else {
+      return "none"
+    }
+  }};
+`
+
+const Produtos = styled.div`
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap:5px;
+  grid-column-gap:5px;
+`
 export default App;
