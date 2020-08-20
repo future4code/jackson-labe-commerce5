@@ -12,9 +12,14 @@ import Pandora from "./accets/images/pandora.jpg"
 import Tanaris from "./accets/images/tanaris.png"
 import Mars from "./accets/images/mars.jpg"
 
+import Filtros from "./accets/components/Filtros"
+// import './App.css';
+
+
 import TripCard from "./accets/Components/TripCard/TripCard"
 import {Carrinho, ItemCarrinho} from './accets/Components/Carrinho/Carrinho'
 import './App.css';
+
 
 const trip = [
   {
@@ -178,6 +183,7 @@ class App extends React.Component {
 
 
 
+
 // função para apagar item do carrinho
 apagarProduto = (itemId) => {
   const listaAtualizada = this.state.listaDeItems.filter(item => {
@@ -203,6 +209,7 @@ atualizarValorTotal = (listaAtualizada) => {
       this.setState({valorTotal: total})
   } else {
     this.setState({valorTotal: 0})
+
   }
 
 }
@@ -245,6 +252,7 @@ render(){
       {tripGrid}
       {/* imprime o componente Carrinho com a lista de items criada no render */}
       <Carrinho valorTotal={this.state.valorTotal} item={itemsCarrinho}/>
+       <Filtros/>
     </div>
   )
 
