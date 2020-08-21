@@ -16,7 +16,7 @@ import Filtros from "./accets/components/Filtros"
 // import './App.css';
 
 
-import TripCard from "./accets/components/TripCard"
+import TripCard from "./accets/components/tripCard"
 import {Carrinho, ItemCarrinho} from './accets/components/Carrinho'
 import styled from 'styled-components';
 import './App.css';
@@ -30,6 +30,7 @@ const trip = [
     package: "3 dias estelares",
     price: 1000,
   },
+  
   {
     id: 2,
     planetImage:Caprica,

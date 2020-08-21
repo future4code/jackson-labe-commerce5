@@ -2,32 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const FormContainer = styled.div`
-  width: 20%;
-  background-color: #B0C4DE;
-  margin: 0 auto;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
- `
- const Input = styled.input`
-  margin-right: 10px;
-  height: 20px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 0px 0px 4px #57534a;
-`
-const Button = styled.button`
-  height: 30px;
-  border: 1px solid gray;
-  outline: none;
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 0px 0px 4px gray;
-`
+
 
 export class Filtros extends React.Component {
     state = {
@@ -122,7 +97,6 @@ export class Filtros extends React.Component {
   const FormContainer = styled.div`
   width: 25vw;
   background-color: gray ;
-  margin:;
   height: 80%;
   display: flex;
   flex-direction: column;
