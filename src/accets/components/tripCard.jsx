@@ -23,8 +23,6 @@ const PlanetCard = styled.span`
     padding: 0.5vw;
     background-color: lightsteelblue;
     color: darkslateblue;
-    display: ;  
-
 `
 
 // mome da tag tava styled.image
