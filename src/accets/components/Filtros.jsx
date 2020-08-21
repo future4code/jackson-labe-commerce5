@@ -27,7 +27,6 @@ const Button = styled.button`
   padding: 5px;
   box-shadow: 0px 0px 4px gray;
 `
-
 export class Filtros extends React.Component {
     state = {
       valores:[],
