@@ -211,12 +211,12 @@ render(){
       <Produtos>
          {tripGrid }
       </Produtos>
-      <ContainerCarrinho>
+      <ContainerCarrinho visibilidade={this.state.apertouCarrinho}>
         <Carrinho valorTotal={this.state.valorTotal} item={itemsCarrinho}/>
       </ContainerCarrinho>
       
 
-      <Botao onClick={this.abriCarrinho} tipoDisplay={"v"}>Carrinho</Botao>
+      <Botao onClick={this.abriCarrinho}>Carrinho</Botao>
     </ContentApp>
   )
 
@@ -236,13 +236,7 @@ const Botao = styled.button`
   position: absolute; 
   `
 const ContainerCarrinho = styled.div`
-  display: ${(props) =>{
-    if(props.tipoDisplay === "v"){
-      return "block"
-    } else {
-      return "none"
-    }
-  }};
+  display: ${props=> props.visibilidade ? 'block' : 'none'} ;
 `
 
 const Produtos = styled.div`
