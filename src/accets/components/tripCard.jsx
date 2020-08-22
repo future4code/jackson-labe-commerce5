@@ -1,19 +1,52 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function TripCard(props) {
-    //const {trip, addToCart} = props;
-    return (
-        <PlanetCard>
-            <PlanetImage src={props.planetImage} alt="Visite nosso planeta" />
-            <p>{props.planetName}</p>
-            <p>{props.package}</p>
-            <p>§$ {props.price}</p>
-            <AddButton onClick={props.addToCart}>Adicionar ao foguete</AddButton>
-        </PlanetCard>
-    )
-}
+import BlackHole from "../images/blackhole.jpg"
+import Caprica from "../images/caprica.jpg"
+import Darillium from "../images/darillium.jpg"
+import Gallifrey from "../images/gallifrey.jpg"
+import Krypton from "../images/krypton.jpg"
+import Pandora from "../images/pandora.jpg"
+import Tanaris from "../images/tanaris.png"
+import Mars from "../images/mars.jpg"
 
+export default class TriCard extends React.Component {
+    state= {
+        listaCompletaDeProdutos: this.props.listaCompleta,
+        listaFiltradaCompleta: this.props.listaCompleta
+    }
+
+
+    componentDidUpdate() {
+        const listaFiltrada = this.state.listaCompletaDeProdutos.filter((produto)=>{
+          return (produto.price<=this.props.valorMaximo && produto.price>=this.props.valorMinimo) ||
+                  (produto.planetName.toLowerCase() === this.props.valorBuscar)
+        })
+
+        console.log(listaFiltrada)
+
+    }
+
+      
+      render() {
+        const produtos = this.state.listaFiltradaCompleta.map((produto)=>{
+            return(
+                <PlanetCard>
+                    <PlanetImage src={produto.planetImage} alt="Visite nosso planeta" />
+                    <p>{produto.planetName}</p>
+                    <p>{produto.package}</p>
+                    <p>§$ {produto.price}</p>
+                    <AddButton onClick={()=>this.props.addToCart(produto.id,produto.planetName,produto.price)}>Adicionar ao foguete</AddButton>
+                </PlanetCard>
+        )
+        })
+        
+
+        return (
+          produtos
+        )
+    }
+}
 
 
 //=====  CSS

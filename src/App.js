@@ -84,18 +84,18 @@ const trip = [
 
 
 
-//Array de produtos em JSX
-const tripGrid = trip.map((item) => {
-  return (
-    <TripCard
-    planetImage={item.planetImage}
-    planetName={item.planetName}
-    package={item.package}
-    price={item.price}
-    //addToCart={/*função add ao carrinho*/}
-    />
-  );
-})
+// //Array de produtos em JSX
+// const tripGrid = trip.map((item) => {
+//   return (
+//     <TripCard
+//     planetImage={item.planetImage}
+//     planetName={item.planetName}
+//     package={item.package}
+//     price={item.price}
+//     //addToCart={/*função add ao carrinho*/}
+//     />
+//   );
+// })
 
 
 
@@ -104,31 +104,105 @@ class App extends React.Component {
   //Aqui sera armazenado a lista de produtos
   //selecionados na pagina de produtos
   state = {
+    
     id: trip.id,
     planetImage: trip.planetImage,
     planetName: trip.planetName,
     package: trip.package,
     price: trip.price,
 
-    listaDeItems: [
+    valorInputMinimo: '',
+    valorInputMaximo: '',
+    valorInputBuscar: '',
+
+
+    listaDeItems: [],
+
+    valorTotal: '',
+    apertouCarrinho: false,
+
+    //lista completa de produtos
+    trip: [
       {
         id: 1,
-        nomeProduto: 'fogete',
-        quantidade: 1,
-        preco: 80
+        planetImage: BlackHole, 
+        planetName: "Buraco Negro",
+        package: "3 dias estelares",
+        price: 1000,
+      },
+      
+      {
+        id: 2,
+        planetImage:Caprica,
+        planetName: "Caprica",
+        package: "3 dias estelares",
+        price: 400,
       },
       {
-        id:2,
-        nomeProduto: 'Viagem pra lua',
-        quantidade: 2,
-        preco:100
+        id: 3,
+        planetImage:Darillium,
+        planetName: "Darillium",
+        package: "3 dias estelares",
+        price: 750,
+      },
+      {
+        id: 4,
+        planetImage:Gallifrey,
+        planetName: "Gallifrey",
+        package: "3 dias estelares",
+        price: 1200,
+      },
+      {
+        id: 5,
+        planetImage:Krypton,
+        planetName: "Krypton",
+        package: "3 dias estelares",
+        price: 600,
+      },
+      {
+        id: 6,
+        planetImage:Pandora,
+        planetName: "Pandora",
+        package: "3 dias estelares",
+        price: 1100,
+      },
+      {
+        id: 7,
+        planetImage:Tanaris,
+        planetName: "Tanaris",
+        package: "3 dias estelares",
+        price: 500,
+      },
+      {
+        id: 8,
+        planetImage:Mars,
+        planetName: "Marte",
+        package: "3 dias estelares",
+        price: 100,
       }
-    ],
-    valorTotal: '',
-    apertouCarrinho: true
+    ]
+    
   }
+  
 
 
+//======= adicionar ao carrinho
+  addCarrinho = (id, nome, preco) => {
+    const produto = {
+      id: id,
+      nomeProduto: nome ,
+      quantidade: 1,
+      preco: preco
+    }
+
+    const novaLista = [...this.state.listaDeItems, produto]
+
+    this.setState({ listaDeItems: novaLista})
+
+    this.atualizarValorTotal(novaLista)
+
+    this.abriVenda()
+  }
 
 
 
@@ -168,12 +242,15 @@ atualizarValorTotal = (listaAtualizada) => {
 //quando o componente é criado, soma os precos de todos os item
 //do carrinho e atualiza no state
 componentDidMount(){
-  const arrayPrecos = this.state.listaDeItems.map((item)=> {
-    return item.preco * item.quantidade
-  })
-  const total = arrayPrecos.reduce((total, proximo) => total + proximo)
+  if(this.state.listaDeItems.length > 0){
+    const arrayPrecos = this.state.listaDeItems.map((item)=> {
+      return item.preco * item.quantidade
+    })
+    const total = arrayPrecos.reduce((total, proximo) => total + proximo)
 
-  this.setState({valorTotal: total})
+    this.setState({valorTotal: total})
+  }
+
 }
 
 
@@ -183,7 +260,30 @@ abriCarrinho = () => {
   })
 }
 
+abriVenda = () => {
+  this.setState({
+    apertouCarrinho: true
+  })
+}
 
+//========= Monitorando campos====================
+onChangeMinimo = (event) => {
+  this.setState({
+    valorInputMinimo: event.target.value.toLowerCase()
+  })
+}
+
+onChangeMaximo = (event) => {
+  this.setState({
+    valorInputMaximo: event.target.value.toLowerCase()
+  })
+};
+
+onChangeBuscar = (event) => {
+  this.setState({
+    valorInputBuscar: event.target.value.toLowerCase()
+  })
+};
 
 
 render(){
@@ -207,10 +307,27 @@ render(){
 
       <Filtros
          listadeProdutos={trip}
+         valorMinimo = {this.state.valorInputMinimo}
+         Minimo={this.onChangeMinimo}
+
+         valorMaximo = {this.state.valorInputMaximo}
+         Maximo={this.onChangeMaximo}
+         
+         valorBusca = {this.state.valorInputBuscar}
+         Busca={this.onChangeBuscar}
       />
+
       <Produtos>
-         {tripGrid }
+        <TripCard
+        
+          listaCompleta={this.state.trip}
+          valorMinimo = {this.state.valorInputMinimo}
+          valorMaximo = {this.state.valorInputMaximo}
+          valorBusca = {this.state.valorInputBuscar}
+          addToCart = {this.addCarrinho}
+          />
       </Produtos>
+      
       <ContainerCarrinho visibilidade={this.state.apertouCarrinho}>
         <Carrinho valorTotal={this.state.valorTotal} item={itemsCarrinho}/>
       </ContainerCarrinho>

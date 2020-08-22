@@ -8,9 +8,9 @@ export class Filtros extends React.Component {
     state = {
       listaDeProdutos: this.props.listadeProdutos,
       valores:[],
-      valorInputMinimo: '',
-      valorInputMaximo: '',
-      valorInputBuscar: ''
+      // valorInputMinimo: '',
+      // valorInputMaximo: '',
+      // valorInputBuscar: ''
     }
     capturarValores = () => {
       if (this.state.valorInputMinimo === '' || this.state.valorInputMaximo === ''){
@@ -28,33 +28,33 @@ export class Filtros extends React.Component {
 
 
 //==========Filtra a lista de produtos ==================
-    componentDidUpdate() {
-      const listaFiltrada = this.state.listaDeProdutos.filter((item)=>{
-        return (item.price<=this.state.valorInputMaximo && item.price>=this.state.valorInputMinimo) ||
-                (item.planetName.toLowerCase() === this.state.valorInputBuscar)
-      })
-      console.table(listaFiltrada)
-      return listaFiltrada
-    }
+    // componentDidUpdate() {
+    //   const listaFiltrada = this.state.listaDeProdutos.filter((item)=>{
+    //     return (item.price<=this.props.valorMaximo && item.price>=this.props.valorMinimo) ||
+    //             (item.planetName.toLowerCase() === this.props.valorBuscar)
+    //   })
+    //   console.table(listaFiltrada)
+    //   return listaFiltrada
+    // }
     
-//========= Monitorando campos====================
-    onChangeMinimo = (event) => {
-      this.setState({
-        valorInputMinimo: event.target.value.toLowerCase()
-      })
-    }
+// //========= Monitorando campos====================
+//     onChangeMinimo = (event) => {
+//       this.setState({
+//         valorInputMinimo: event.target.value.toLowerCase()
+//       })
+//     }
 
-    onChangeMaximo = (event) => {
-      this.setState({
-        valorInputMaximo: event.target.value.toLowerCase()
-      })
-    };
+//     onChangeMaximo = (event) => {
+//       this.setState({
+//         valorInputMaximo: event.target.value.toLowerCase()
+//       })
+//     };
 
-    onChangeNomeProduto = (event) => {
-      this.setState({
-        valorInputBuscar: event.target.value.toLowerCase()
-      })
-    };
+//     onChangeNomeProduto = (event) => {
+//       this.setState({
+//         valorInputBuscar: event.target.value.toLowerCase()
+//       })
+//     };
 
     render() {
       const valorFinal = this.state.valores.map((vlr) => {
@@ -72,22 +72,24 @@ export class Filtros extends React.Component {
           <h2>Filtros:</h2>
           <h3> Valor mínimo:</h3>
             <Input
-              value={this.state.minimo}
-              onChange={this.onChangeMinimo}
+              value={this.props.valorMinimo}
+              onChange={this.props.Minimo}
               placeholder={'Valor minimo'}
               type='number'
             />
+
             <h3> Valor máximo:</h3>
             <Input
-              value={this.state.maximo}
-              onChange={this.onChangeMaximo}
+              value={this.props.valorMaximo}
+              onChange={this.props.Maximo}
               placeholder={'Maximo'}
               type='number'
             />
+            
             <h3> Buscar Produto:</h3>
             <Input
-              value={this.state.buscar}
-              onChange={this.onChangeNomeProduto}
+              value={this.props.valorBuscar}
+              onChange={this.props.Busca}
               placeholder={'Digite o nome do produto'}
             />
           </FormContainer>)
