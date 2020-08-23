@@ -8,6 +8,7 @@ import Krypton from "./accets/images/krypton.jpg"
 import Pandora from "./accets/images/pandora.jpg"
 import Tanaris from "./accets/images/tanaris.png"
 import Mars from "./accets/images/mars.jpg"
+import icone from "./accets/images/foguete.png"
 
 import Filtros from "./accets/components/Filtros"
 import TripCard from "./accets/components/tripCard"
@@ -225,9 +226,7 @@ render(){
 
 
   return (
-    <ContentApp>
-
-
+    <div>
       <Filtros
          listadeProdutos={this.state.trip}
          valorMinimo = {this.state.valorInputMinimo}
@@ -239,18 +238,15 @@ render(){
          valorBusca = {this.state.valorInputBuscar}
          Busca={this.onChangeBuscar}
       />
+      <ContentApp>
 
-     
-        <TripCard
-        
-          listaCompleta={this.state.trip}
-          valorMinimo = {this.state.valorInputMinimo}
-          valorMaximo = {this.state.valorInputMaximo}
-          valorBusca = {this.state.valorInputBuscar}
-          addToCart = {this.addCarrinho}
-          />
-
-      
+      <TripCard
+        listaCompleta={this.state.trip}
+        valorMinimo = {this.state.valorInputMinimo}
+        valorMaximo = {this.state.valorInputMaximo}
+        valorBusca = {this.state.valorInputBuscar}
+        addToCart = {this.addCarrinho}
+      />
       <ContainerCarrinho visibilidade={this.state.apertouCarrinho}>
         <Carrinho 
           valorTotal={this.state.valorTotal} 
@@ -258,10 +254,12 @@ render(){
           // listaCarrinho={this.state.listaDeItems}
           />
       </ContainerCarrinho>
-      
-
-      <Botao onClick={this.abriCarrinho}>Carrinho</Botao>
-    </ContentApp>
+      <Botao onClick={this.abriCarrinho} src={icone}></Botao>
+      </ContentApp>
+      <Rodape> 
+      <h4>Projeto desenvolvido por Camila, Joao Paulo e Ana Flavia</h4>
+      </Rodape>
+    </div>
   )
 
 }
@@ -269,17 +267,38 @@ render(){
 }
 
 const ContentApp = styled.div`
-  width: 100vw;
-  background-color: #B0C4DE;
+  font-family: Philosopher, Arial;
+  width: 90vw;
+  background-color: #A9A9A9;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   position: relative;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 0px 4px #57534a;
+  font-fa
   `
-const Botao = styled.button`
-  position: absolute; 
+const Botao = styled.img`
+  width: 80px;
+  position: fixed;
+  right:20px;
+  bottom:40px;
+  
+
   `
 const ContainerCarrinho = styled.div`
   display: ${props=> props.visibilidade ? 'block' : 'none'} ;
 `
+const Rodape = styled.div`
+  color: #F0E68C;
+  width: 90vw;
+  margin: 0 auto;
+  background-color: #1C1C1C;
+  display: flex;
+  justify-content:center;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 0px 4px #57534a;
+  `
 export default App;
