@@ -38,6 +38,7 @@ const ConteinerCarrinho = styled.div`
     border: 1px solid black;
     width: 20vw;
     height: 90vh;
+    overflow-y:scroll;
 `
 const ListaPedidos = styled.ul`
     list-style: none;

@@ -43,9 +43,9 @@ export default class TriCard extends React.Component {
             return(
                 <PlanetCard>
                     <PlanetImage src={produto.planetImage} alt="Visite nosso planeta" />
-                    <p>{produto.planetName}</p>
-                    <p>{produto.package}</p>
-                    <p>§$ {produto.price}</p>
+                    <h3>{produto.planetName}</h3>
+                    <h4>{produto.package}</h4>
+                    <h5>§$ {produto.price}</h5>
                     <AddButton onClick={()=>this.props.addToCart(produto.id,produto.planetName,produto.price)}>Adicionar ao foguete</AddButton>
                 </PlanetCard>
              )
@@ -74,21 +74,31 @@ export default class TriCard extends React.Component {
 const PlanetCard = styled.span`
     border: thin dotted blueviolet;
     padding: 0.5vw;
-    background-color: lightsteelblue;
+    background-color: #DCDCDC;
     color: darkslateblue;
+    box-shadow: 4px 0px 4px #57534a;
+    width: 90%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-family: Arial;
+
+
+    
 `
 // mome da tag tava styled.image
 const PlanetImage = styled.img`
-    max-width: 150px;
+    
     margin: 0 auto;
+    width:95%;
 `
 const AddButton = styled.button`
-    background-color: darkblue;
+    background-color: #526A62;
     color: lightyellow;
     padding: 1vw;
     margin: 0 auto;
     :hover{
-        background-color: red;
+        background-color: #FE6E01;
     }
 `
 
@@ -99,6 +109,7 @@ const Produtos = styled.div`
   grid-template-rows: 50px repeat(2, 2fr);
   grid-row-gap:5px;
   grid-column-gap:5px;
+  
 
   h3 {
       grid-column: 1/3;
