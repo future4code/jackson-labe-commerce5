@@ -95,21 +95,34 @@ class App extends React.Component {
   }
 
 //======= adicionar ao carrinho
-  addCarrinho = (id, nome, preco) => {
+  addCarrinho = ( nome, preco) => {
     const produto = {
-      id: id,
+      id: Date.now(),
       nomeProduto: nome ,
       quantidade: 1,
       preco: preco
     }
 
     const novaLista = [...this.state.listaDeItems, produto]
-
     this.setState({ listaDeItems: novaLista})
 
     this.atualizarValorTotal(novaLista)
-
+    this.salvaStorage(novaLista)
     this.abriVenda()
+  }
+
+  salvaStorage= (carrinho) =>{
+      localStorage.setItem("carrinho", JSON.stringify(carrinho))
+  }
+
+  //busca os dados salvos no Storage
+  componentWillMount(){
+    const backupCarrinho = JSON.parse(localStorage.getItem('carrinho'))
+    
+    if(backupCarrinho){
+      this.setState({ listaDeItems: backupCarrinho})
+      this.atualizarValorTotal(backupCarrinho)
+    }
   }
 
 
@@ -124,6 +137,7 @@ apagarProduto = (itemId) => {
   this.setState({listaDeItems: listaAtualizada})
 
   this.atualizarValorTotal(listaAtualizada)
+  this.salvaStorage(listaAtualizada)
 }
 
 
@@ -172,6 +186,8 @@ abriVenda = () => {
   this.setState({
     apertouCarrinho: true
   })
+
+  console.log(this.state.listaDeItems.length)
 }
 
 //========= Monitorando campos====================
@@ -232,7 +248,11 @@ render(){
         addToCart = {this.addCarrinho}
       />
       <ContainerCarrinho visibilidade={this.state.apertouCarrinho}>
-        <Carrinho valorTotal={this.state.valorTotal} item={itemsCarrinho}/>
+        <Carrinho 
+          valorTotal={this.state.valorTotal} 
+          item={itemsCarrinho}
+          // listaCarrinho={this.state.listaDeItems}
+          />
       </ContainerCarrinho>
       <Botao onClick={this.abriCarrinho} src={icone}></Botao>
       </ContentApp>
