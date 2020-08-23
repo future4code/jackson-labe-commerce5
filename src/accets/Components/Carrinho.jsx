@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 
 export class Carrinho extends React.Component {
+
     render(){
         return(
             <ConteinerCarrinho>
@@ -17,6 +18,7 @@ export class Carrinho extends React.Component {
 }
 
 export class ItemCarrinho extends React.Component{
+    
         render(){
             return(
                 <ItemLista>

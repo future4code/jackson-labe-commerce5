@@ -46,7 +46,7 @@ export default class TriCard extends React.Component {
                     <p>{produto.planetName}</p>
                     <p>{produto.package}</p>
                     <p>§$ {produto.price}</p>
-                    <AddButton onClick={()=>this.props.addToCart(produto.id,produto.planetName,produto.price)}>Adicionar ao foguete</AddButton>
+                    <AddButton onClick={()=>this.props.addToCart(produto.planetName,produto.price)}>Adicionar ao foguete</AddButton>
                 </PlanetCard>
              )
         })
