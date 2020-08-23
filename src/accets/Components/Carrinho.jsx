@@ -41,7 +41,6 @@ const ConteinerCarrinho = styled.div`
 `
 const ListaPedidos = styled.ul`
     list-style: none;
-    /* background-color: #0fa; */
     display:flex;
     flex-direction: column;
     align-items:center ;
@@ -52,7 +51,6 @@ const ListaPedidos = styled.ul`
 const ItemLista = styled.li`
     width: 98%;
     border-bottom: 1px dashed black;
-    /* background-color: #CCC; */
     padding: 5px 0;
     font-size: 18px;
     

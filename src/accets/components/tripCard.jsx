@@ -1,35 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
-import BlackHole from "../images/blackhole.jpg"
-import Caprica from "../images/caprica.jpg"
-import Darillium from "../images/darillium.jpg"
-import Gallifrey from "../images/gallifrey.jpg"
-import Krypton from "../images/krypton.jpg"
-import Pandora from "../images/pandora.jpg"
-import Tanaris from "../images/tanaris.png"
-import Mars from "../images/mars.jpg"
 
 export default class TriCard extends React.Component {
     state= {
         listaCompletaDeProdutos: this.props.listaCompleta,
-        listaFiltradaCompleta: this.props.listaCompleta
     }
-
-
-    componentDidUpdate() {
-        const listaFiltrada = this.state.listaCompletaDeProdutos.filter((produto)=>{
-          return (produto.price<=this.props.valorMaximo && produto.price>=this.props.valorMinimo) ||
-                  (produto.planetName.toLowerCase() === this.props.valorBuscar)
-        })
-
-        console.log(listaFiltrada)
-
-    }
-
       
       render() {
-        const produtos = this.state.listaFiltradaCompleta.map((produto)=>{
+        let listaFiltrada 
+        if (this.props.valorMaximo==='' && this.props.valorMinimo==='' && this.props.valorBusca===''){
+            listaFiltrada = this.state.listaCompletaDeProdutos 
+        }else{
+            listaFiltrada = this.state.listaCompletaDeProdutos.filter((produto)=>{
+                return (produto.price<=this.props.valorMaximo && produto.price>=this.props.valorMinimo) || (produto.planetName.toLowerCase() === this.props.valorBusca.toLowerCase())
+            })
+           
+         }
+
+        const produtos = listaFiltrada.map((produto)=>{
             return(
                 <PlanetCard>
                     <PlanetImage src={produto.planetImage} alt="Visite nosso planeta" />
@@ -38,13 +27,13 @@ export default class TriCard extends React.Component {
                     <p>§$ {produto.price}</p>
                     <AddButton onClick={()=>this.props.addToCart(produto.id,produto.planetName,produto.price)}>Adicionar ao foguete</AddButton>
                 </PlanetCard>
-        )
+             )
         })
         
-
         return (
           produtos
         )
+       
     }
 }
 
@@ -57,7 +46,6 @@ const PlanetCard = styled.span`
     background-color: lightsteelblue;
     color: darkslateblue;
 `
-
 // mome da tag tava styled.image
 const PlanetImage = styled.img`
     max-width: 150px;
