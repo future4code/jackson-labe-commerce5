@@ -224,7 +224,7 @@ render(){
          Busca={this.onChangeBuscar}
       />
 
-      <Produtos>
+     
         <TripCard
         
           listaCompleta={this.state.trip}
@@ -233,7 +233,7 @@ render(){
           valorBusca = {this.state.valorInputBuscar}
           addToCart = {this.addCarrinho}
           />
-      </Produtos>
+
       
       <ContainerCarrinho visibilidade={this.state.apertouCarrinho}>
         <Carrinho valorTotal={this.state.valorTotal} item={itemsCarrinho}/>
@@ -261,13 +261,5 @@ const Botao = styled.button`
   `
 const ContainerCarrinho = styled.div`
   display: ${props=> props.visibilidade ? 'block' : 'none'} ;
-`
-
-const Produtos = styled.div`
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(4, 1fr);
-  grid-row-gap:5px;
-  grid-column-gap:5px;
 `
 export default App;
