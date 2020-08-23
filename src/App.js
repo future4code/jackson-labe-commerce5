@@ -1,116 +1,25 @@
 
 import React from "react"
-// import tripCard from "./accets/components/tripCard.jsx";
-
 import BlackHole from "./accets/images/blackhole.jpg"
 import Caprica from "./accets/images/caprica.jpg"
 import Darillium from "./accets/images/darillium.jpg"
 import Gallifrey from "./accets/images/gallifrey.jpg"
-
 import Krypton from "./accets/images/krypton.jpg"
 import Pandora from "./accets/images/pandora.jpg"
 import Tanaris from "./accets/images/tanaris.png"
 import Mars from "./accets/images/mars.jpg"
 
 import Filtros from "./accets/components/Filtros"
-// import './App.css';
-
-
 import TripCard from "./accets/components/tripCard"
 import {Carrinho, ItemCarrinho} from './accets/components/Carrinho'
 import styled from 'styled-components';
 import './App.css';
-
-//Lista de produtos do site
-const trip = [
-  {
-    id: 1,
-    planetImage: BlackHole, 
-    planetName: "Buraco Negro",
-    package: "3 dias estelares",
-    price: 1000,
-  },
-  
-  {
-    id: 2,
-    planetImage:Caprica,
-    planetName: "Caprica",
-    package: "3 dias estelares",
-    price: 400,
-  },
-  {
-    id: 3,
-    planetImage:Darillium,
-    planetName: "Darillium",
-    package: "3 dias estelares",
-    price: 750,
-  },
-  {
-    id: 4,
-    planetImage:Gallifrey,
-    planetName: "Gallifrey",
-    package: "3 dias estelares",
-    price: 1200,
-  },
-  {
-    id: 5,
-    planetImage:Krypton,
-    planetName: "Krypton",
-    package: "3 dias estelares",
-    price: 600,
-  },
-  {
-    id: 6,
-    planetImage:Pandora,
-    planetName: "Pandora",
-    package: "3 dias estelares",
-    price: 1100,
-  },
-  {
-    id: 7,
-    planetImage:Tanaris,
-    planetName: "Tanaris",
-    package: "3 dias estelares",
-    price: 500,
-  },
-  {
-    id: 8,
-    planetImage:Mars,
-    planetName: "Marte",
-    package: "3 dias estelares",
-    price: 100,
-  }
-]
-
-
-
-// //Array de produtos em JSX
-// const tripGrid = trip.map((item) => {
-//   return (
-//     <TripCard
-//     planetImage={item.planetImage}
-//     planetName={item.planetName}
-//     package={item.package}
-//     price={item.price}
-//     //addToCart={/*função add ao carrinho*/}
-//     />
-//   );
-// })
-
-
 
 class App extends React.Component {
 
   //Aqui sera armazenado a lista de produtos
   //selecionados na pagina de produtos
   state = {
-    
-    id: trip.id,
-    planetImage: trip.planetImage,
-    planetName: trip.planetName,
-    package: trip.package,
-    price: trip.price,
-
     valorInputMinimo: '',
     valorInputMaximo: '',
     valorInputBuscar: '',
@@ -183,8 +92,6 @@ class App extends React.Component {
     ]
     
   }
-  
-
 
 //======= adicionar ao carrinho
   addCarrinho = (id, nome, preco) => {
@@ -306,7 +213,7 @@ render(){
 
 
       <Filtros
-         listadeProdutos={trip}
+         listadeProdutos={this.state.trip}
          valorMinimo = {this.state.valorInputMinimo}
          Minimo={this.onChangeMinimo}
 
