@@ -38,7 +38,7 @@ export class Filtros extends React.Component {
   const FormContainer = styled.div`
   width: 89vw;
   margin: 0 auto;
-  background-color: #FAA94C ;
+  background-color: #ea7f03 ;
   height: 40px;
   padding: 1px;
   display: flex;
@@ -51,7 +51,7 @@ export class Filtros extends React.Component {
 
 
     h1 {
-      color: #1C1C1C;
+      color: #57534a;
       text-align: center;
       font-size: 150%;
       font-family: Philosopher, Arial;

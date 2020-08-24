@@ -46,8 +46,7 @@ export default class TriCard extends React.Component {
                     <h3>{produto.planetName}</h3>
                     <h4>{produto.package}</h4>
                     <h5>§$ {produto.price}</h5>
-                    <AddButton onClick={()=>this.props.addToCart(produto.id,produto.planetName,produto.price)}>Adicionar ao foguete</AddButton>
-
+                    <AddButton onClick={()=>this.props.addToCart(produto.planetName,produto.price)}>Adicionar ao foguete</AddButton>
                 </PlanetCard>
              )
         })
@@ -117,6 +116,15 @@ const Produtos = styled.div`
       grid-row: 1/2;
       justify-self: self-start;
       align-self: center;
+      color: #57534a;
+  }
+
+  h4 {
+    color: #57534a; 
+  }
+
+  h5 {
+    color: #57534a;
   }
 
   select {
