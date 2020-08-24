@@ -35,12 +35,19 @@ export class ItemCarrinho extends React.Component{
 
 const ConteinerCarrinho = styled.div`
     display: flex;
+    font-family: Philosopher, Arial;
     flex-direction: column;
     align-items: flex-start;
-    border: 1px solid black;
+    border: thin dotted blueviolet;
+    box-shadow: 4px 0px 4px #57534a;
     width: 20vw;
-    height: 90vh;
+    height: 93%;
     overflow-y:scroll;
+    margin-top:55px;
+    padding-top:0;
+        h1 {
+            color:#dcdcdc;
+        }
 `
 const ListaPedidos = styled.ul`
     list-style: none;

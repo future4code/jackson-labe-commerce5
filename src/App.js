@@ -95,7 +95,7 @@ class App extends React.Component {
   }
 
 //======= adicionar ao carrinho
-  addCarrinho = ( nome, preco) => {
+  addCarrinho = (nome, preco) => {
     const produto = {
       id: Date.now(),
       nomeProduto: nome ,
@@ -171,8 +171,8 @@ componentDidMount(){
     const total = arrayPrecos.reduce((total, proximo) => total + proximo)
 
     this.setState({valorTotal: total})
+    console.log(total)
   }
-
 }
 
 
@@ -277,15 +277,12 @@ const ContentApp = styled.div`
   border-radius: 5px;
   padding: 5px;
   box-shadow: 0px 0px 4px #57534a;
-  font-fa
   `
 const Botao = styled.img`
   width: 80px;
   position: fixed;
   right:20px;
   bottom:40px;
-  
-
   `
 const ContainerCarrinho = styled.div`
   display: ${props=> props.visibilidade ? 'block' : 'none'} ;
